@@ -1,6 +1,7 @@
 # disable spotlight indexing
 sudo mdutil -i off -a
-brew cask install docker
+
+brew install docker --cask
 # allow the app to run without confirmation
 xattr -d -r com.apple.quarantine /Applications/Docker.app
   
