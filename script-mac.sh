@@ -1,14 +1,9 @@
 # disable spotlight indexing
 sudo mdutil -i off -a
 
-brew install docker --cask
-# allow the app to run without confirmation
-xattr -d -r com.apple.quarantine /Applications/Docker.app
-  
-# preemptively do docker.app's setup to avoid any gui prompts
-sudo /bin/cp /Applications/Docker.app/Contents/Library/LaunchServices/com.docker.vmnetd /Library/PrivilegedHelperTools
-sudo /bin/cp /Applications/Docker.app/Contents/Resources/com.docker.vmnetd.plist /Library/LaunchDaemons/
-sudo /bin/chmod 544 /Library/PrivilegedHelperTools/com.docker.vmnetd
-sudo /bin/chmod 644 /Library/LaunchDaemons/com.docker.vmnetd.plist
-sudo /bin/launchctl load /Library/LaunchDaemons/com.docker.vmnetd.plist
-open -g -a Docker.app
+#Docker
+mkdir -p ~/.docker/machine/cache
+curl -Lo ~/.docker/machine/cache/boot2docker.iso https://github.com/boot2docker/boot2docker/releases/download/v19.03.12/boot2docker.iso
+brew install docker docker-machine
+docker-machine create --driver virtualbox default
+docker-machine env default
