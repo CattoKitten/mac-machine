@@ -8,6 +8,7 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 9999999
     steps:
     - uses: fastai/workflows/ssh@master
       with:
